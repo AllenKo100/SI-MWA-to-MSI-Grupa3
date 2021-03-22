@@ -1,10 +1,38 @@
 const db = require("./db");
 const bodyParser = require("body-parser");
 const express = require("express");
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
 const app = express();
-app.use(bodyParser())
+app.use(bodyParser());
 
+const swaggerOptions = {
+    swaggerDefinition: {
+      info: {
+        title: "Server API",
+        version: '1.0.0',
+      },
+    },
+    apis: ["app.js"],
+  };
+  
+  const swaggerDocs = swaggerJsDoc(swaggerOptions);
+  app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
+/**
+ * @swagger
+ * /liveStatus:
+ *   post:
+ *     description: Create new log in database
+ *     parameters:
+ *       - time: time
+ *         name: string
+ *         location: string
+ *         message: string
+ *     responses:
+ *       200:
+ *         description: Created log
+ */
 app.post("/liveStatus", (req, response) => {
 
     const {timeStamp, name, location, message} = req.body;
