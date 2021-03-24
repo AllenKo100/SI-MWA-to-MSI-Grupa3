@@ -29,13 +29,17 @@ const swaggerOptions = {
  *         name: string
  *         location: string
  *         message: string
+ *         cpuUsage: double
+ *         ramUsage: double
+ *         hddUsage: double
+ *         gpuUsage: double
  *     responses:
  *       200:
  *         description: Created log
  */
 app.post("/liveStatus", (req, response) => {
 
-    const {timeStamp, name, location, message} = req.body;
+    const {timeStamp, name, location, message, cpuUsage, ramUsage, hddUsage, gpuUsage} = req.body;
 
     db.query('UPDATE "DEVICE" SET "Status" = $1, "LastTimeOnline" = $2  WHERE "Name"= $3 AND "Location" = $4 returning "DeviceId"', [true, timeStamp, name, location], (err, res2) => {
         
@@ -51,7 +55,7 @@ app.post("/liveStatus", (req, response) => {
 
         let id = res2.rows[0].DeviceId;
         
-        db.query('INSERT INTO "DEVICE_STATUS_LOG" ("TimeStamp", "DeviceId", "Message") VALUES ($1, $2, $3)', [timeStamp, id, message], (err, res3) => {
+        db.query('INSERT INTO "DEVICE_STATUS_LOG" ("TimeStamp", "DeviceId", "Message", "CpuUsage", "RamUsage", "HDDUsage", "GPUUsage") VALUES ($1, $2, $3, $4, $5, $6, $7)', [timeStamp, id, message, cpuUsage, ramUsage, hddUsage, gpuUsage], (err, res3) => {
             
             if(err) {
                 response.status(404).json({"message" : "Couldn't update device status"});
