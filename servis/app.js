@@ -68,4 +68,70 @@ app.post("/liveStatus", (req, response) => {
     });
 })
 
+
+
+/*{
+    "code": 404,
+    "message": "Došlo je do greške!",
+    "name": "DESKTOP-SCC",
+    "errorTime" : "2021-03-15 23:32:06.672809",
+    "location": "Sarajevo - SCC"
+}*/
+
+
+/**
+ * @swagger
+ * /errorLog:
+ *   post:
+ *     description: Creates record about occured error 
+ *     parameters:
+ *       - code: integer
+ *         message: string
+ *         name: string
+ *         errorTime: time
+ *         location: string
+ *     responses:
+ *       200:
+ *         description: Created error information
+ *       401:
+ *         description: Couldn't find error type
+ *       402: 
+ *         description: Couldn't find device
+ *       403: 
+ *         description: Couldn't insert error information
+ */
+app.post("/errorLog", (req, res1) => {
+    
+    const {code, message, name, errorTime, location} = req.body;
+
+    db.query('SELECT "Id" FROM "ERROR_DICTIONARY" WHERE "Code"=$1', [code], (err, res2) => {
+        
+        if(err) {
+
+            res1.status(401).json({"message" : "Couldn't find error type"});
+            return;
+        }
+        db.query('SELECT "DeviceId" FROM "DEVICE" WHERE "Name"=$1 AND "Location"=$2', [name, location], (err, res3) => {
+
+            if(err) {
+
+                res1.status(402).json({"message" : "Couldn't find device"});
+                return;
+            }
+            
+            db.query('INSERT INTO "ERROR_LOG" ("Message", "DeviceId", "ErrorTypeId", "ErrorTime") VALUES ($1, $2, $3, $4)', 
+            [message, res3.rows[0].DeviceId, res2.rows[0].Id, errorTime], (err, res4) => {
+
+                    if(err) {
+                        res1.status(403).json({"message" : "Couldn't insert error information"});
+                        return;
+                    }
+
+                    res1.status(200).json({"message" : "Sucessfully inserted error information"});
+                }
+            );
+        });
+    });
+});
+
 app.listen(3000);
