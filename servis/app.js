@@ -9,8 +9,8 @@ const app = express();
 app.use(bodyParser());
 
 const options = {
-    key: fs.readFileSync("/srv/www/keys/my-site-key.pem"),
-    cert: fs.readFileSync("/srv/www/keys/chain.pem")
+    key: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/fullchain.pem")
   };
 
 const swaggerOptions = {
@@ -74,6 +74,9 @@ app.post("/liveStatus", (req, response) => {
         });
     });
 })
+app.get("/HelloWorld",((req, res) => {
+    res.json({message : "Hello world"});
+}))
 
 
 
