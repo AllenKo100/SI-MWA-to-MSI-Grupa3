@@ -1,10 +1,17 @@
 const db = require("./db");
+const https = require("https"),
+fs = require("fs");
 const bodyParser = require("body-parser");
 const express = require("express");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const app = express();
 app.use(bodyParser());
+
+const options = {
+    key: fs.readFileSync("/srv/www/keys/my-site-key.pem"),
+    cert: fs.readFileSync("/srv/www/keys/chain.pem")
+  };
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -134,4 +141,4 @@ app.post("/errorLog", (req, res1) => {
     });
 });
 
-app.listen(3000);
+https.createServer(options, app).listen(3000);
