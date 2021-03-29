@@ -121,12 +121,26 @@ app.post("/errorLog", (req, res1) => {
             res1.status(401).json({"message" : "Couldn't find error type"});
             return;
         }
+
+        if(res2.rows.length==0) {
+            res1.status(401).json({"message" : "Couldn't find error type"});
+            return;
+
+        }
+
+
         db.query('SELECT "DeviceId" FROM "DEVICE" WHERE "Name"=$1 AND "Location"=$2', [name, location], (err, res3) => {
 
             if(err) {
 
                 res1.status(402).json({"message" : "Couldn't find device"});
                 return;
+            }
+
+            if(res3.rows.length==0) {
+                res1.status(402).json({"message" : "Couldn't find device"});
+                return;
+
             }
             
             db.query('INSERT INTO "ERROR_LOG" ("Message", "DeviceId", "ErrorTypeId", "ErrorTime") VALUES ($1, $2, $3, $4)', 
