@@ -118,15 +118,12 @@ app.post("/errorLog", (req, res1) => {
         
         if(err) {
 
-            res1.status(401).json({"message" : "Couldn't find error type"});
+            res1.status(401).json({"message" : "Database error"});
             return;
         }
 
-        if(res2.rows.length==0) {
-            res1.status(401).json({"message" : "Couldn't find error type"});
-            return;
 
-        }
+
 
 
         db.query('SELECT "DeviceId" FROM "DEVICE" WHERE "Name"=$1 AND "Location"=$2', [name, location], (err, res3) => {
@@ -142,9 +139,16 @@ app.post("/errorLog", (req, res1) => {
                 return;
 
             }
+            ErrorTypeId = null;
+            if(res2.rows.length!=0) {
+
+                ErrorTypeId = res2.rows[0].Id;
+
+
+            }
             
             db.query('INSERT INTO "ERROR_LOG" ("Message", "DeviceId", "ErrorTypeId", "ErrorTime") VALUES ($1, $2, $3, $4)', 
-            [message, res3.rows[0].DeviceId, res2.rows[0].Id, errorTime], (err, res4) => {
+            [message, res3.rows[0].DeviceId, ErrorTypeId, errorTime], (err, res4) => {
 
                     if(err) {
                         res1.status(403).json({"message" : "Couldn't insert error information"});
@@ -158,4 +162,7 @@ app.post("/errorLog", (req, res1) => {
     });
 });
 
+
+
 https.createServer(options, app).listen(3000);
+//app.listen(3000);
