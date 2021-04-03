@@ -71,9 +71,9 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.post("/liveStatus", (req, response) => {
 
-    const { timeStamp, name, location, message, cpuUsage, ramUsage, hddUsage, gpuUsage } = req.body;
+    const { timeStamp, deviceUid, message, cpuUsage, ramUsage, hddUsage, gpuUsage } = req.body;
 
-    db.query('UPDATE "DEVICE" SET "Status" = $1, "LastTimeOnline" = $2  WHERE "Name"= $3 AND "Location" = $4 returning "DeviceId"', [true, timeStamp, name, location], (err, res2) => {
+    db.query('UPDATE "DEVICE" SET "Status" = $1, "LastTimeOnline" = $2  WHERE "deviceUID" = $3 returning "DeviceId"', [true, timeStamp, deviceUid], (err, res2) => {
 
         if (err) {
             response.status(404).json({ "message": "Query execution error" });
