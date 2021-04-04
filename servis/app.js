@@ -43,9 +43,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *             time: 
  *               type: string
  *               format: date-time
- *             name: 
- *               type: string
- *             location: 
+ *             deviceUid: 
  *               type: string
  *             message: 
  *               type: string
@@ -132,7 +130,7 @@ app.get("/HelloWorld", ((req, res) => {
  *             errorTime: 
  *               type: string
  *               format: date-time
- *             location: 
+ *             deviceUid: 
  *               type: string   
  *     responses:
  *       200:
@@ -147,7 +145,9 @@ app.get("/HelloWorld", ((req, res) => {
 
 app.post("/errorLog", (req, res1) => {
 
-    const { code, message, name, errorTime, location } = req.body;
+    const { code, message, deviceUid, errorTime } = req.body;
+
+
 
     db.query('SELECT "Id" FROM "ERROR_DICTIONARY" WHERE "Code"=$1', [code], (err, res2) => {
 
@@ -159,9 +159,7 @@ app.post("/errorLog", (req, res1) => {
 
 
 
-
-
-        db.query('SELECT "DeviceId" FROM "DEVICE" WHERE "Name"=$1 AND "Location"=$2', [name, location], (err, res3) => {
+        db.query('SELECT "DeviceId" FROM "DEVICE" WHERE "deviceUID"=$1', [deviceUid], (err, res3) => {
 
             if (err) {
 
@@ -178,7 +176,6 @@ app.post("/errorLog", (req, res1) => {
             if (res2.rows.length != 0) {
 
                 ErrorTypeId = res2.rows[0].Id;
-
 
             }
 
@@ -199,13 +196,13 @@ app.post("/errorLog", (req, res1) => {
 
 var corsOptions = {
     origin: "http://localhost:3000"
-  };
-  
-  app.use(cors(corsOptions));
-  
-  const initRoutes = require("../servis/fileSavingService");
-  
-  app.use(express.urlencoded({ extended: true }));
-  initRoutes(app);
+};
+
+app.use(cors(corsOptions));
+
+const initRoutes = require("../servis/fileSavingService");
+
+app.use(express.urlencoded({ extended: true }));
+initRoutes(app);
 //https.createServer(options, app).listen(3000);
- app.listen(3000);
+app.listen(3000);
