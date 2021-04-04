@@ -11,10 +11,10 @@ app.use(bodyParser());
 
 global.__basedir = __dirname;
 
-/*const options = {
+const options = {
     key: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/privkey.pem"),
     cert: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/fullchain.pem")
-};*/
+};
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -192,17 +192,6 @@ app.post("/errorLog", (req, res1) => {
     });
 });
 
+//app.listen(3000);
 
-
-var corsOptions = {
-    origin: "http://localhost:3000"
-};
-
-app.use(cors(corsOptions));
-
-const initRoutes = require("../servis/fileSavingService");
-
-app.use(express.urlencoded({ extended: true }));
-initRoutes(app);
-//https.createServer(options, app).listen(3000);
-app.listen(3000);
+https.createServer(options, app).listen(3000);
