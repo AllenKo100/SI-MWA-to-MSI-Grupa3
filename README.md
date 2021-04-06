@@ -40,6 +40,10 @@ Sve rute koje postoje možete pronaći na sljedećoj dokumentaciji: https://si-2
 * Kao korisnik monitor aplikacije želim da se sve greške uređaja spremaju na bazu zbog praćenja protoka podataka.
 * Kao korisnik monitor aplikacije želim da se greške sortiraju po nivou ozbiljnosti greške zbog lakšeg pregleda.
 
+### Sprint 3
+* Kao korisnik monitor aplikacije želim da se greške prilikom pada aplikacije spremaju u bazu zbog praćenja aplikacije.
+* Kao korisnik monitor aplikacije želim da se konfiguracijska datoteka sprema na bazu prije slanja agentu zbog pregleda konfiguracijskih datoteka od svih uređaja.
+
 ## Definition of Done
 
 Da bi se određeni user story smatrao završenim, potrebno je da su zadovoljeni sljedeći uslovi:
