@@ -192,6 +192,46 @@ app.post("/errorLog", (req, res1) => {
     });
 });
 
+
+
+/**
+ * @swagger
+ * /errorAdd:
+ *   post:
+ *     summary: Inserts new error in
+ *     parameters:
+ *       - in: body
+ *         schema: 
+ *           type: object
+ *           properties:    
+ *             code: 
+ *               type: integer
+ *             description: 
+ *               type: string
+ *             type: 
+ *               type: string
+ *               description: Type describes seriousness of error - RED(Extreme), YELLOW(Medium), BLUE(Neutral), RUNTIME
+ *     responses:
+ *       200:
+ *         description: Sucessfuly inserted new error
+ *       401:
+ *         description: Query execution error
+ */
+
+
+app.post("/errorAdd", (req, res1) => {
+    const { code, description, type } = req.body;
+
+    db.query('INSERT INTO "ERROR_DICTIONARY" ("Code", "Description", "Type") VALUES ($1, $2, $3)', [code, description, type], (err, res2) => {
+        if (err) {
+            res1.status(401).json({ "message": "Query execution error" });
+            return;
+        }
+
+        res1.status(200).json({ "message": "Sucessfuly inserted new error" });
+    });
+});
+
 //app.listen(3000);
 
 https.createServer(options, app).listen(3000);
