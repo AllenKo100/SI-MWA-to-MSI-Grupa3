@@ -6,7 +6,7 @@ MWA to Main Server Interface je jedan od modula Monitor Servera, te je njegov za
 
 ## Članovi tima
 
-* [Fahira Ahmetspahić](https://github.com/fahmetspah1) - Vođa tima
+* [Ahmetspahić Fahira](https://github.com/fahmetspah1) - Vođa tima
 * [Džumhur Paša](https://github.com/PasaDzumhur)
 * [Handžić Rijad](https://github.com/rhandzic1)
 * [Kovačević Allen](https://github.com/AllenKo100)
@@ -43,6 +43,11 @@ Sve rute koje postoje možete pronaći na sljedećoj dokumentaciji: https://si-2
 ### Sprint 3
 * Kao korisnik monitor aplikacije želim da se greške prilikom pada aplikacije spremaju u bazu zbog praćenja aplikacije.
 * Kao korisnik monitor aplikacije želim da se konfiguracijska datoteka sprema na bazu prije slanja agentu zbog pregleda konfiguracijskih datoteka od svih uređaja.
+
+### Sprint 4
+* Kao korisnik monitor aplikacije želim da se omogući pregled svih errora za određenu mašinu zbog praćnja podataka.
+* Kao korisnik monitor aplikacije želim da se omogući pregled svih errora grupe korisnika koji je trenutno prijavljen zbog praćenja podataka grupe mašina.
+* Kao korisnik monitor aplikacije želim da se omogući prebacivanje mašine iz grupe u grupu koja pripada istoj poslovnici zbog lakšeg uređivanja hijerarhije.
 
 ## Definition of Done
 
