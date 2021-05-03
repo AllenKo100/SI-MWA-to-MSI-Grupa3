@@ -28,9 +28,11 @@ Created API for error logging
 * Commit and push on your branch
 * Create a pull request
 
-### Task
-
 ## Item
+
+Created API for editing groups and config update
+
+### Task
 
 * Create a new branch and switch to it
 * Create route for adding new groups
@@ -41,13 +43,28 @@ Created API for error logging
 * Commit and push on your branch
 * Create a pull request
 
-### Task
-
 ## Item
+
+Created API for all errors
+
+###Task
 
 * Create a new branch and switch to it
 * Create route for getting all errors for specific device
 * Create route for getting all errors for every device of the group that active user is connected to
+* Allow only https protocol
+* Write new data that server receive to database
+* Commit and push on your branch
+* Create a pull request
+
+## Item
+
+Created API for file upload from device
+
+###Task
+
+* Create a new branch and switch to it
+* Create route for uploading files from devices
 * Allow only https protocol
 * Write new data that server receive to database
 * Commit and push on your branch
