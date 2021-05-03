@@ -49,6 +49,9 @@ Sve rute koje postoje možete pronaći na sljedećoj dokumentaciji: https://si-2
 * Kao korisnik monitor aplikacije želim da se omogući pregled svih errora grupe korisnika koji je trenutno prijavljen zbog praćenja podataka grupe mašina.
 * Kao korisnik monitor aplikacije želim da se omogući prebacivanje mašine iz grupe u grupu koja pripada istoj poslovnici zbog lakšeg uređivanja hijerarhije.
 
+### Sprint 5
+* Kao korisnik monitor aplikacije želim da se omogući čuvanje datoteka na bazu zbog kasnijeg pregleda istih.
+
 ## Definition of Done
 
 Da bi se određeni user story smatrao završenim, potrebno je da su zadovoljeni sljedeći uslovi:
