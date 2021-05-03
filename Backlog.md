@@ -47,7 +47,7 @@ Created API for editing groups and config update
 
 Created API for all errors
 
-###Task
+### Task
 
 * Create a new branch and switch to it
 * Create route for getting all errors for specific device
@@ -61,7 +61,7 @@ Created API for all errors
 
 Created API for file upload from device
 
-###Task
+### Task
 
 * Create a new branch and switch to it
 * Create route for uploading files from devices
