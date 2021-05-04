@@ -131,7 +131,7 @@ describe("ErrorAdd", function() {
             description: 'Expectation failed',
             type: 'YELLOW'})
         .end((err,res) => {
-            res.should.have.status(200);
+            res.should.have.status(401);
             res.body.should.have.property('message');
             done();
         })
