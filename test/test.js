@@ -86,6 +86,25 @@ describe("LiveStatus", function() {
             done();
         })
     });
+
+    it("Wrong statistic", function(done) {
+        var poruka = "Couldn't find device";
+        chai.request(app)
+        .post("/liveStatus")
+        .send({
+            timeStamp:'2021-05-04 21:34:15.000000',
+            deviceUid: 'fc548ecb-12ec-4ad5-8672-9d5a9565ff60',
+            message: 'Im alive',
+            cpuUsage: "cpu",
+            ramUsage: null,
+            hddUsage: null,
+            gpuUsage: null})
+        .end((err,res) => {
+            res.should.have.status(404);
+            res.body.should.have.property('message');
+            done();
+        })
+    });
 });
 
 
@@ -117,6 +136,21 @@ describe("ErrorLog", function() {
             errorTime:'2021-04-06 15:01:29.000000'})
         .end((err,res) => {
             res.should.have.status(402);
+            res.body.should.have.property('message');
+            done();
+        })
+    });
+
+    it("Wrong errorTime", function(done) {
+        chai.request(app)
+        .post("/errorLog")
+        .send({
+            code: 1,
+            message: 'Error',
+            deviceUid: 'fc548ecb-12ec-4ad5-8672-9d5a9565ff60',
+            errorTime:'.'})
+        .end((err,res) => {
+            res.should.have.status(403);
             res.body.should.have.property('message');
             done();
         })
