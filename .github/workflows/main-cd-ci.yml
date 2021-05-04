@@ -21,6 +21,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-        cd servis
-        npm install
-        CI = true npm test
+        run: npm ci
+        run: npm run build --if-present
+        run: npm test
