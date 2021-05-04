@@ -23,10 +23,8 @@ describe("LiveStatus", function() {
             hddUsage: 0.5,
             gpuUsage: 0.5})
         .end((err,res) => {
-            // res.should.have.status(200);
-            // res.body.should.have.property('message');
-            // done();
-            assert.strictEqual(200, res.status);
+            res.should.have.status(200);
+            res.body.should.have.property('message');
             done();
         })
     });
@@ -43,10 +41,8 @@ describe("LiveStatus", function() {
             hddUsage: 0.5,
             gpuUsage: 0.5})
         .end((err,res) => {
-            // res.should.have.status(404);
-            // res.body.should.have.property('message');
-            // done();
-            assert.strictEqual(404, res.status);
+            res.should.have.status(404);
+            res.body.should.have.property('message');
             done();
         })
     });
@@ -64,10 +60,8 @@ describe("LiveStatus", function() {
             hddUsage: 0.5,
             gpuUsage: 0.5})
         .end((err,res) => {
-            // res.should.have.status(404);
-            // res.body.should.have.property('message');
-            // done();
-            assert.strictEqual(404, res.status);
+            res.should.have.status(404);
+            res.body.should.have.property('message');
             done();
         })
     });
@@ -85,12 +79,9 @@ describe("LiveStatus", function() {
             hddUsage: null,
             gpuUsage: null})
         .end((err,res) => {
-            // res.should.have.status(200);
-            // res.body.should.have.property('message');
-            // done();
-            assert.strictEqual(200, res.status);
+            res.should.have.status(200);
+            res.body.should.have.property('message');
             done();
-            process.exit(0);
         })
     });
 });
@@ -98,67 +89,69 @@ describe("LiveStatus", function() {
 
 //Testovi za /errorLog
 
-// describe("ErrorLog", function() {
-//     it("status 200", function(done) {
-//         chai.request(app)
-//         .post("/errorLog")
-//         .send({
-//             code: 1,
-//             message: 'Error',
-//             deviceUid: 'fc548ecb-12ec-4ad5-8672-9d5a9565ff60',
-//             errorTime:'2021-04-06 15:01:29.000000'})
-//         .end((err,res) => {
-//             res.should.have.status(200);
-//             res.body.should.have.property('message');
-//             done();
-//         })
-//     });
+describe("ErrorLog", function() {
+    it("status 200", function(done) {
+        chai.request(app)
+        .post("/errorLog")
+        .send({
+            code: 1,
+            message: 'Error',
+            deviceUid: 'fc548ecb-12ec-4ad5-8672-9d5a9565ff60',
+            errorTime:'2021-04-06 15:01:29.000000'})
+        .end((err,res) => {
+            res.should.have.status(200);
+            res.body.should.have.property('message');
+            done();
+        })
+    });
 
-//     it("Wrong deviceUid", function(done) {
-//         chai.request(app)
-//         .post("/errorLog")
-//         .send({
-//             code: 1,
-//             message: 'Error',
-//             deviceUid: '10',
-//             errorTime:'2021-04-06 15:01:29.000000'})
-//         .end((err,res) => {
-//             res.should.have.status(402);
-//             res.body.should.have.property('message');
-//             done();
-//         })
-//     });
-// });
+    it("Wrong deviceUid", function(done) {
+        chai.request(app)
+        .post("/errorLog")
+        .send({
+            code: 1,
+            message: 'Error',
+            deviceUid: '10',
+            errorTime:'2021-04-06 15:01:29.000000'})
+        .end((err,res) => {
+            res.should.have.status(402);
+            res.body.should.have.property('message');
+            done();
+        })
+    });
+});
 
-// //Testovi za errorAdd
+//Testovi za errorAdd
 
-// describe("ErrorAdd", function() {
-//     it("status 200", function(done) {
-//         chai.request(app)
-//         .post("/errorAdd")
-//         .send({
-//             code: 417,
-//             description: 'Expectation failed',
-//             type: 'YELLOW'})
-//         .end((err,res) => {
-//             res.should.have.status(401);
-//             res.body.should.have.property('message');
-//             done();
-//         })
-//     });
+describe("ErrorAdd", function() {
+    it("status 200", function(done) {
+        chai.request(app)
+        .post("/errorAdd")
+        .send({
+            code: 417,
+            description: 'Expectation failed',
+            type: 'YELLOW'})
+        .end((err,res) => {
+            res.should.have.status(401);
+            res.body.should.have.property('message');
+            done();
+        })
+    });
 
-//     it("status 401", function(done) {
-//         chai.request(app)
-//         .post("/errorAdd")
-//         .send({
-//             code: 401,
-//             description: 'Expectation failed',
-//             type: 'YELLOW'})
-//         .end((err,res) => {
-//             res.should.have.status(401);
-//             res.body.should.have.property('message');
-//             done();
-//         })
-//     });
-// });
+    it("status 401", function(done) {
+        chai.request(app)
+        .post("/errorAdd")
+        .send({
+            code: 401,
+            description: 'Expectation failed',
+            type: 'YELLOW'})
+        .end((err,res) => {
+            res.should.have.status(401);
+            res.body.should.have.property('message');
+            done();
+            process.exit(0);
+        })
+    });
+
+});
 
