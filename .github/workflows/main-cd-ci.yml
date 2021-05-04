@@ -24,4 +24,5 @@ jobs:
         cd servis
         npm install
         npm test
+        npm stop
     
