@@ -90,9 +90,11 @@ describe("LiveStatus", function() {
             // done();
             assert.strictEqual(200, res.status);
             done();
+            process.exit(0);
         })
     });
 });
+
 
 //Testovi za /errorLog
 
