@@ -11,11 +11,6 @@ app.use(bodyParser());
 
 global.__basedir = __dirname;
 
-const options = {
-    key: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/privkey.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/fullchain.pem")
-};
-
 const swaggerOptions = {
     swaggerDefinition: {
         components: {},
@@ -234,5 +229,10 @@ app.post("/errorAdd", (req, res1) => {
 
 module.exports = app;
 // app.listen(3000);
+
+const options = {
+    key: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/fullchain.pem")
+};
 
 https.createServer(options, app).listen(3000);
