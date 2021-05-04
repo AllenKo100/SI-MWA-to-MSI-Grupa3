@@ -21,3 +21,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: pwd
+    - run: cd servis
+    - run: pwd
