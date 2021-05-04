@@ -25,7 +25,7 @@ describe("LiveStatus", function() {
             hddUsage: 0.5,
             gpuUsage: 0.5})
         .end((err,res) => {
-            res.should.have.status(200);
+            res.should.have.status(401);
             res.body.should.have.property('message');
             done();
         })
