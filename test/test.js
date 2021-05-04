@@ -9,6 +9,8 @@ chai.use(chaiHttp);
 let should = chai.should();
 const assert = require('assert');
 
+var server = app.listen(3000);
+
 //Testovi za /liveStatus
 describe("LiveStatus", function() {
     it("status 200", function(done) {
@@ -149,9 +151,9 @@ describe("ErrorAdd", function() {
             res.should.have.status(401);
             res.body.should.have.property('message');
             done();
-            process.exit(0);
         })
     });
 
 });
 
+server.close();
