@@ -8,8 +8,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./servis
 
     strategy:
       matrix:
@@ -22,7 +20,8 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - name: testovi
-      run: npm test
-      working-directory: ${{env.working-directory}}
+    - run: |
+        cd servis
+        npm install
+        npm test
     
