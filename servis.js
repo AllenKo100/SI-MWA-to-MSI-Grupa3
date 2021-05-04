@@ -1,5 +1,5 @@
 const db = require("./db");
-const https = require("https");
+/*const https = require("https");*/
 const cors = require("cors");
 fs = require("fs");
 const bodyParser = require("body-parser");
@@ -230,9 +230,9 @@ app.post("/errorAdd", (req, res1) => {
 module.exports = app;
 // app.listen(3000);
 
-const options = {
-    key: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/privkey.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/fullchain.pem")
-};
+// const options = {
+//     key: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/privkey.pem"),
+//     cert: fs.readFileSync("/etc/letsencrypt/live/si-2021.167.99.244.168.nip.io/fullchain.pem")
+// };
 
-https.createServer(options, app).listen(3000);
+// https.createServer(options, app).listen(3000);
